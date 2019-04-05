@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -59,7 +60,7 @@ public class RiehlEditor extends JFrame implements ActionListener{
 		JMenu edit = new JMenu("Edit");
 		JMenuItem wrap = new JMenuItem("Word Wrap");
 		
-		JMenu close = new JMenu("Close Tab");
+		JMenuItem close = new JMenuItem("Close Tab");
 		close.addActionListener(this);
 		
 		JMenuItem[] items = { newDoc, open, save, saveAs, exit, info, };
@@ -72,6 +73,8 @@ public class RiehlEditor extends JFrame implements ActionListener{
 		file.add(save);
 		file.add(saveAs);
 		file.addSeparator();
+		file.add(close);
+		file.addSeparator();
 		file.add(exit);
 		
 		help.add(info);
@@ -81,9 +84,8 @@ public class RiehlEditor extends JFrame implements ActionListener{
 		bar.add(file);
 		//bar.add(edit);
 		bar.add(help);
-		bar.add(close);
-		
-		
+
+
 		add(tabPane);
 		setJMenuBar(bar);
 		
@@ -123,7 +125,7 @@ public class RiehlEditor extends JFrame implements ActionListener{
 			tabPane.addTab(doc2.getName(), doc2);
 			tabPane.setSelectedComponent(doc2); */
 		} else if (e.getActionCommand().equals("Close Tab")){
-			tabPane.remove(tabPane.getSelectedComponent());
+			tabPane.remove(tabPane.getSelectedIndex());
 		}
 		
 	}
